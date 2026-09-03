@@ -1,22 +1,15 @@
 # Kaboom
 
-A local-first kanban board for macOS. Your tickets live in plain JSON on your machine — no accounts, no cloud, no sync drama.
+A local-first kanban board for macOS. Your tickets stay on your Mac as plain JSON files.
 
-![Kaboom](https://img.shields.io/badge/platform-macOS-lightgrey)
-![License](https://img.shields.io/badge/license-private-lightgrey)
-
-## Why Kaboom?
-
-Most task apps want your data on their servers. Kaboom keeps everything on your Mac:
+## Features
 
 - **Four columns** — Backlog, To Do, In Progress, Done
-- **Drag and drop** — reorder within a column or move across columns
-- **Categories & tags** — filter the board by either, or both
-- **Due dates** — overdue tickets get a terracotta nudge
-- **Search** — finds matches in titles, notes, and tags
-- **Archive** — clearing Done tickets moves them to `archive.json`, not the trash
-
-Data is stored in Electron's app-data folder (see below), so reinstalling or updating the app won't wipe your board.
+- **Drag and drop** — move tickets between columns  
+- **Categories & tags** — organize and filter your work
+- **Due dates** — see overdue tickets at a glance
+- **Search** — find tickets by title, notes, or tags
+- **Archive** — cleared tickets go to `archive.json`, not the trash
 
 ## Quick start
 
@@ -27,71 +20,26 @@ npm install
 npm start
 ```
 
-## Build the `.app`
+## Build the app
 
 ```bash
-npm run dist
+npm run dist        # Creates Kaboom.app + DMG
+npm run dist:dir    # App only (faster)
 ```
 
-This produces:
+## Download
 
-| Output | Location |
-|--------|----------|
-| `Kaboom.app` | `dist/mac-arm64/Kaboom.app` |
-| Installer | `dist/Kaboom-0.1.0-arm64.dmg` |
+Get the latest release from [GitHub Releases](https://github.com/chefmatteo/kaboom/releases).
 
-Drag the `.app` to Applications, or open the DMG and install from there.
-
-For a faster unpack-only build (no DMG):
-
+**macOS Security Note:** If you see "Kaboom is damaged", run this in Terminal:
 ```bash
-npm run dist:dir
+xattr -cr /path/to/Kaboom.app
 ```
 
-## Where your data lives
+## Data location
 
-Kaboom never writes tickets into the repo. At runtime, files go to:
+Your tickets live in `~/Library/Application Support/Kaboom/`:
+- `tasks.json` — active board
+- `archive.json` — cleared tickets
 
-```
-~/Library/Application Support/Kaboom/
-├── tasks.json      ← active board
-└── archive.json    ← cleared Done tickets
-```
-
-Both files are plain JSON you can back up, diff, or edit by hand.
-
-## Keyboard shortcuts
-
-| Shortcut | Action |
-|----------|--------|
-| `⌘ N` | New ticket |
-| `⌘ F` | Focus search |
-| `Esc` | Clear search |
-
-## Project layout
-
-```
-kaboom/
-├── src/
-│   ├── main.js       # Electron main process
-│   ├── renderer.js   # Board UI & persistence
-│   ├── store.js      # Pure state helpers (no DOM, no fs)
-│   ├── styles.css    # Warm parchment theme
-│   ├── index.html    # Shell markup
-│   └── test.js       # State helper tests
-├── package.json
-└── README.md
-```
-
-## Tests
-
-State logic is fully tested — no browser needed:
-
-```bash
-npm test
-```
-
-## License
-
-Private / personal use. See [chefmatteo/kaboom](https://github.com/chefmatteo/kaboom) on GitHub.
->>>>>>> 74a5b57 (Restructure Kaboom as a tidy Electron app under src/)
+Both files are plain JSON you can backup or edit directly.
