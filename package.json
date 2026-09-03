@@ -9,8 +9,9 @@
   "scripts": {
     "start": "electron .",
     "test": "node src/test.js",
-    "dist": "electron-builder --mac",
-    "dist:dir": "electron-builder --mac dir"
+    "build:app": "bash scripts/build-app.sh",
+    "verify:app": "bash scripts/verify-app.sh",
+    "dist": "npm run build:app && npm run verify:app"
   },
   "devDependencies": {
     "electron": "^44.1.1",
