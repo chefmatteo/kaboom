@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Kaboom</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="top">
+      <h1>Kaboom</h1>
+      <div class="counts" id="counts"></div>
+      <div class="spacer"></div>
+      <input id="search" type="search" placeholder="Search tickets" autocomplete="off">
+      <button class="btn primary" id="newBtn">+ New ticket</button>
+    </div>
+    <div class="filters" id="filters"></div>
+  </header>
+  <div id="board"></div>
+
+  <dialog id="editor">
+    <form id="form">
+      <div><label for="title">Title</label><input id="title" required autocomplete="off"></div>
+      <div><label for="notes">Notes</label><textarea id="notes"></textarea></div>
+      <div class="row">
+        <div><label for="priority">Priority</label><select id="priority"></select></div>
+        <div><label for="due">Due</label><input id="due" type="date"></div>
+      </div>
+      <div>
+        <label for="category">Category</label>
+        <div class="catrow">
+          <select id="category"></select>
+          <button type="button" class="icon" id="newcat" title="New category">+</button>
+        </div>
+        <div class="catrow hidden" id="catform" style="margin-top:6px">
+          <input id="catname" placeholder="Category name" autocomplete="off">
+          <input id="catcolor" type="color" value="#4b607c">
+          <button type="button" class="icon" id="catadd" title="Add">✓</button>
+        </div>
+      </div>
+      <div>
+        <label for="tags">Tags <span style="text-transform:none">(comma separated)</span></label>
+        <input id="tags" list="taglist" autocomplete="off"><datalist id="taglist"></datalist>
+      </div>
+      <div class="actions">
+        <button type="button" class="link" id="del">Delete</button>
+        <div class="spacer"></div>
+        <button type="button" class="btn" id="cancel">Cancel</button>
+        <button type="submit" class="btn primary">Save</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="cats">
+    <div class="catmgr">
+      <h3>Categories</h3>
+      <div id="catlist"></div>
+      <div class="catrow" id="catnewrow">
+        <input id="newcatname" placeholder="New category name" autocomplete="off">
+        <input id="newcatcolor" type="color" value="#4b607c">
+        <button type="button" class="btn" id="newcatadd">Add</button>
+      </div>
+      <div class="actions">
+        <div class="spacer"></div>
+        <button class="btn" id="catsclose">Done</button>
+      </div>
+    </div>
+  </dialog>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

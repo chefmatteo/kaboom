@@ -1,0 +1,17 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+out/
+
+# Local ticket data (never commit your board)
+data/
+tasks.json
+archive.json
+
+# macOS
+.DS_Store
+
+# Editor
+.vscode/

@@ -1,0 +1,37 @@
+{
+  "name": "kaboom",
+  "productName": "Kaboom",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A local-first kanban board that keeps your tickets in a plain JSON file.",
+  "author": "chefmatteo",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "node src/test.js",
+    "dist": "electron-builder --mac",
+    "dist:dir": "electron-builder --mac dir"
+  },
+  "devDependencies": {
+    "electron": "^44.1.1",
+    "electron-builder": "^26.0.12"
+  },
+  "build": {
+    "appId": "com.chefmatteo.kaboom",
+    "productName": "Kaboom",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "dir"
+      ]
+    }
+  }
+}
