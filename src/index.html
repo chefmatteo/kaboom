@@ -67,6 +67,7 @@
     </div>
   </dialog>
 
-  <script src="renderer.js"></script>
+  <!-- Inline require so Node integration applies (external <script src> does not get it). -->
+  <script>require('./renderer.js');</script>
 </body>
 </html>

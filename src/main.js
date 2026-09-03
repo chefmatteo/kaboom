@@ -13,7 +13,8 @@ app.whenReady().then(() => {
     width: 1280, height: 820, minWidth: 720,
     titleBarStyle: 'hiddenInset',
     backgroundColor: '#ebe7e4',
-    webPreferences: { nodeIntegration: true, contextIsolation: false },
+    // sandbox must be off for require() in the renderer; default true breaks our scripts.
+    webPreferences: { nodeIntegration: true, contextIsolation: false, sandbox: false },
   });
   win.loadFile(path.join(__dirname, 'index.html'));
 });
